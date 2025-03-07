@@ -4,6 +4,7 @@ import Alunos from "./pages/Alunos";
 import Disciplinas from "./pages/Disciplinas";
 import Matricula from "./pages/Matricula";
 import ExibirDisciplinas from "./pages/ExibirDisciplinas";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

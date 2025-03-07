@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./Login.css"; // Importando o CSS moderno
 
 function Alunos() {
   const [aluno, setAluno] = useState({ nome: "", endereco: "", curso: "" });
