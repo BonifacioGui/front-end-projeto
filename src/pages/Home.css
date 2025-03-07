@@ -1,0 +1,25 @@
+/* Home.css */
+body {
+    background-color: #f4f6f9;
+  }
+  
+  h1 {
+    color: #343a40;
+    font-size: 3rem;
+  }
+  
+  p.lead {
+    color: #6c757d;
+    font-size: 1.25rem;
+  }
+  
+  button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+  

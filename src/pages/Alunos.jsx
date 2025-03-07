@@ -16,15 +16,51 @@ function Alunos() {
   };
 
   return (
-    <div>
-      <h2>Cadastro de Aluno</h2>
-      <input type="text" placeholder="Nome" onChange={(e) => setAluno({ ...aluno, nome: e.target.value })} />
-      <button onClick={cadastrarAluno}>Cadastrar</button>
+    <div className="container mt-4">
+      <h2 className="mb-4">Cadastro de Aluno</h2>
+      
+      {/* Formulário para cadastro */}
+      <div className="form-group">
+        <label htmlFor="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          className="form-control"
+          placeholder="Nome"
+          onChange={(e) => setAluno({ ...aluno, nome: e.target.value })}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="endereco">Endereço</label>
+        <input
+          type="text"
+          id="endereco"
+          className="form-control"
+          placeholder="Endereço"
+          onChange={(e) => setAluno({ ...aluno, endereco: e.target.value })}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="curso">Curso</label>
+        <input
+          type="text"
+          id="curso"
+          className="form-control"
+          placeholder="Curso"
+          onChange={(e) => setAluno({ ...aluno, curso: e.target.value })}
+        />
+      </div>
+      <button className="btn btn-primary mt-3" onClick={cadastrarAluno}>
+        Cadastrar
+      </button>
 
-      <h3>Lista de Alunos</h3>
-      <ul>
+      {/* Lista de alunos */}
+      <h3 className="mt-4">Lista de Alunos</h3>
+      <ul className="list-group">
         {alunos.map((a, index) => (
-          <li key={index}>{a.nome}</li>
+          <li key={index} className="list-group-item">
+            {a.nome}
+          </li>
         ))}
       </ul>
     </div>
