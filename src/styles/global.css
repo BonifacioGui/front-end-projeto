@@ -1,0 +1,727 @@
+/* Reset básico */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+  
+  /* Defina a fonte global */
+  body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased; /* Melhora a nitidez das fontes */
+  -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Ajustes adicionais para títulos e textos */
+  h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; /* Peso da fonte para títulos */
+  }
+  
+  p, a, span, input, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400; /* Peso da fonte para textos normais */
+  }
+  
+  /* Estilos para o Header */
+  .header {
+  background-color: #343a40; /* Cor de fundo escura */
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .header-container {
+  padding: 0 20px; /* Espaçamento interno */
+  display: flex;
+  align-items: center;
+  }
+  
+  .header-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff; /* Cor do texto */
+  margin: 0 auto; /* Centraliza o título */
+  }
+  
+  .header-toggle {
+  border: none;
+  }
+  
+  .header-collapse {
+  flex-grow: 0; /* Impede que o collapse ocupe espaço extra */
+  }
+  
+  .header-nav {
+  gap: 20px; /* Espaçamento entre os links */
+  }
+  
+  .header-nav-link {
+  color: #ffffff !important; /* Cor do texto */
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  }
+  
+  .header-nav-link:hover {
+  color: #007bff !important; /* Azul no hover */
+  }
+  
+  /* Estilos para a Página de Login */
+  .login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+  background-color: #e0e5ec; /* Cor de fundo suave */
+  padding: 20px;
+  }
+  
+  .login-container {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 400px; /* Largura máxima do container */
+  text-align: center;
+  }
+  
+  .login-title {
+  font-size: 2rem;
+  color: #333; /* Cor escura para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+  }
+  
+  .login-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333; /* Cor escura para o texto */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-input:focus {
+  border-color: #007bff; /* Azul no foco */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  .login-input::placeholder {
+  color: #999; /* Cor do placeholder */
+  }
+  
+  .login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+
+  .success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Estilos para a Página de Exibir Disciplinas */
+  .disciplinas-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+  background-color: #e0e5ec; /* Cor de fundo suave */
+  padding: 20px;
+  }
+  
+  .disciplinas-container {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 600px; /* Largura máxima do container */
+  text-align: center;
+  }
+  
+  .disciplinas-title {
+  font-size: 2rem;
+  color: #333; /* Cor escura para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+  }
+  
+  .disciplinas-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333; /* Cor escura para o texto */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .disciplinas-input:focus {
+  border-color: #007bff; /* Azul no foco */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  .disciplinas-input::placeholder {
+  color: #999; /* Cor do placeholder */
+  }
+  
+  .disciplinas-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .disciplinas-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  
+  .disciplinas-list {
+  list-style-type: none; /* Remove os marcadores da lista */
+  padding: 0;
+  margin-top: 20px;
+  }
+  
+  .disciplinas-item {
+  background-color: #f8f9fa; /* Fundo cinza claro */
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #333; /* Cor escura para o texto */
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  }
+  
+  .disciplinas-item:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Azul claro no hover */
+  }
+  
+  .mensagem-sucesso {
+    background-color: #4caf50; /* Verde */
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  /* Estilos para a Página de Alunos */
+  .alunos-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+  background-color: #e0e5ec; /* Cor de fundo suave */
+  padding: 20px;
+  }
+  
+  .alunos-container {
+  background-color: #e3f2fd; /* Azul claro */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 800px; /* Largura máxima do container */
+  }
+  
+  .alunos-title {
+  font-size: 2rem;
+  color: #333; /* Cor escura para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  }
+  
+  .alunos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os campos */
+  }
+  
+  .alunos-form-group {
+  display: flex;
+  flex-direction: column;
+  }
+  
+  .alunos-form-label {
+  font-size: 1rem;
+  color: #555; /* Cinza escuro para o texto */
+  margin-bottom: 8px;
+  font-weight: 500;
+  }
+  
+  .alunos-form-input {
+  padding: 12px;
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333; /* Cor escura para o texto */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .alunos-form-input:focus {
+  border-color: #007bff; /* Azul no foco */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  .alunos-error-message {
+  color: #dc3545; /* Vermelho para mensagens de erro */
+  font-size: 0.875rem;
+  margin-top: 5px;
+  }
+  
+  .alunos-form-button {
+  padding: 12px;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .alunos-form-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  
+  .alunos-subtitle {
+  font-size: 1.5rem;
+  color: #333; /* Cor escura para o subtítulo */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  }
+  
+  .alunos-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .alunos-table-header {
+  background-color: #f8f9fa; /* Fundo cinza claro para cabeçalho */
+  }
+  
+  .alunos-table-header th {
+  padding: 12px;
+  color: #333; /* Cor escura para o texto */
+  font-weight: 600;
+  text-align: left;
+  }
+  
+  .alunos-table-body {
+  background-color: #ffffff;
+  }
+  
+  .alunos-table-row {
+  border-bottom: 1px solid #ddd; /* Linhas suaves */
+  }
+  
+  .alunos-table-row td {
+  padding: 12px;
+  color: #555; /* Cinza escuro para o texto */
+  }
+  
+  /* Estilos para a Página de Disciplinas */
+  .disciplinas-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+  background-color: #e0e5ec; /* Cor de fundo suave */
+  padding: 20px;
+  }
+  
+  .disciplinas-container {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 800px; /* Largura máxima do container */
+  }
+  
+  .disciplinas-title {
+  font-size: 2rem;
+  color: #333; /* Cor escura para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  }
+  
+  .disciplinas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os campos */
+  }
+  
+  .disciplinas-form-group {
+  display: flex;
+  flex-direction: column;
+  }
+  
+  .disciplinas-form-label {
+  font-size: 1rem;
+  color: #555; /* Cinza escuro para o texto */
+  margin-bottom: 8px;
+  font-weight: 500;
+  }
+  
+  .disciplinas-form-input {
+  padding: 12px;
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333; /* Cor escura para o texto */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .disciplinas-form-input:focus {
+  border-color: #007bff; /* Azul no foco */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  .disciplinas-form-button {
+  padding: 12px;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .disciplinas-form-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  
+  .disciplinas-subtitle {
+  font-size: 1.5rem;
+  color: #333; /* Cor escura para o subtítulo */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  }
+  
+  .disciplinas-list {
+  list-style-type: none; /* Remove os marcadores da lista */
+  padding: 0;
+  }
+  
+  .disciplinas-list-item {
+  background-color: #f8f9fa; /* Fundo cinza claro */
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #555; /* Cinza escuro para o texto */
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  }
+  
+  .disciplinas-list-item:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Azul claro no hover */
+  }
+  
+  /* Estilos para a Página Home */
+  .home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o footer fique no final */
+  background-color: #f8f9fa; /* Cor de fundo suave */
+  }
+  
+  .home-hero {
+  background-color: #007bff; /* Cor de fundo do hero */
+  color: #ffffff; /* Cor do texto */
+  padding: 80px 20px;
+  text-align: center;
+  }
+  
+  .home-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  }
+  
+  .home-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  }
+  
+  .home-features {
+  padding: 60px 20px;
+  }
+  
+  .home-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .home-icon {
+  color: #007bff; /* Cor do ícone */
+  margin-bottom: 20px;
+  }
+  
+  .home-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  }
+  
+  .home-footer {
+  background-color: #343a40; /* Cor de fundo do footer */
+  color: #ffffff; /* Cor do texto */
+  padding: 20px;
+  margin-top: auto; /* Garante que o footer fique no final */
+  }
+  
+  .home-footer-text {
+  margin: 0;
+  font-size: 0.9rem;
+  }
+  
+  /* Estilos para a Página de Matrícula */
+  .matricula-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Centraliza verticalmente */
+  background-color: #e0e5ec; /* Cor de fundo suave */
+  padding: 20px;
+  }
+  
+  .matricula-container {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 500px; /* Largura máxima do container */
+  }
+  
+  .matricula-title {
+  font-size: 2rem;
+  color: #333; /* Cor escura para o título */
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  }
+  
+  .matricula-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os campos */
+  }
+  
+  .matricula-form-group {
+  display: flex;
+  flex-direction: column;
+  }
+  
+  .matricula-form-label {
+  font-size: 1rem;
+  color: #555; /* Cinza escuro para o texto */
+  margin-bottom: 8px;
+  font-weight: 500;
+  }
+  
+  .matricula-form-input {
+  padding: 12px;
+  border: 1px solid #ddd; /* Borda suave */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333; /* Cor escura para o texto */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .matricula-form-input:focus {
+  border-color: #007bff; /* Azul no foco */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  .matricula-form-button {
+  padding: 12px;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .matricula-form-button:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  
+  /* Conteúdo das Páginas */
+  .content {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco */
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Containers Personalizados */
+  .container-custom {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 500px; /* Largura máxima para formulários */
+  margin: 0 auto; /* Centraliza o container */
+  }
+  
+  /* Títulos */
+  h1, h2, h3 {
+  color: #333; /* Cor escura para títulos */
+  margin-bottom: 1rem;
+  }
+  
+  h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  }
+  
+  h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  }
+  
+  h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  }
+  
+  /* Botões */
+  .btn-primary {
+  background-color: #007bff; /* Azul */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+  background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  
+  /* Formulários */
+  .form-control {
+  background-color: #ffffff;
+  border: 1px solid #ddd; /* Borda suave */
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+  border-color: #007bff; /* Azul no foco */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
+  }
+  
+  /* Tabelas */
+  .table {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .table th, .table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* Linhas suaves */
+  }
+  
+  .table th {
+  background-color: #f8f9fa; /* Fundo cinza claro para cabeçalho */
+  color: #333;
+  font-weight: 600;
+  }
+  
+  /* Mensagens de Erro */
+  .error-message {
+  color: #dc3545; /* Vermelho para mensagens de erro */
+  font-size: 0.875rem;
+  margin-top: 5px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+  .main-layout {
+  flex-direction: column;
+  }
+  
+  .sidebar {
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: none;
+  }
+  
+  .content {
+  margin: 0;
+  padding: 15px;
+  }
+  }

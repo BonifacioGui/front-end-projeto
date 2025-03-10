@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../styles/global.css"; // Ajuste o caminho conforme necessário
 
 function ExibirDisciplinas() {
   const [alunoId, setAlunoId] = useState("");
@@ -11,16 +12,27 @@ function ExibirDisciplinas() {
   };
 
   return (
-    <div>
-      <h2>Disciplinas do Aluno</h2>
-      <input type="text" placeholder="ID do Aluno" onChange={(e) => setAlunoId(e.target.value)} />
-      <button onClick={buscarDisciplinas}>Buscar</button>
+    <div className="disciplinas-page">
+      <div className="disciplinas-container">
+        <h2 className="disciplinas-title">Disciplinas do Aluno</h2>
+        <input
+          type="text"
+          placeholder="ID do Aluno"
+          onChange={(e) => setAlunoId(e.target.value)}
+          className="disciplinas-input"
+        />
+        <button onClick={buscarDisciplinas} className="disciplinas-button">
+          Buscar
+        </button>
 
-      <ul>
-        {disciplinas.map((d, index) => (
-          <li key={index}>{d.nome}</li>
-        ))}
-      </ul>
+        <ul className="disciplinas-list">
+          {disciplinas.map((d, index) => (
+            <li key={index} className="disciplinas-item">
+              {d.nome}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

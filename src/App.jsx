@@ -1,18 +1,24 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import Sidebar from "./Sidebar";
-import Home from "./pages/Home";  // Importando a página principal
-import Alunos from "./pages/Alunos";  // Outros componentes já criados
+import Home from "./pages/Home"; // Importando a página principal
+import Alunos from "./pages/Alunos"; // Outros componentes já criados
 import Disciplinas from "./pages/Disciplinas";
-import Matriculas from "./pages/Matriculas";
+import Matriculas from "./pages/Matricula";
 import Login from "./pages/Login";
+import "./styles/global.css"; // Importando o CSS global
+
+
 
 function App() {
   return (
     <Router>
+      {/* Header */}
       <Header />
-      <div className="d-flex">
-        <Sidebar />
+
+      {/* Layout Principal (Sidebar + Conteúdo) */}
+      <div className="main-layout">
+
+        {/* Conteúdo das Páginas */}
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
