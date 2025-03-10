@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importe o useNavigate
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../styles/global.css";
 
@@ -21,39 +21,60 @@ function Alunos() {
     },
   });
 
+  const [alunos, setAlunos] = useState([]); // Lista de alunos
   const [erros, setErros] = useState({});
   const [mensagem, setMensagem] = useState("");
-  const navigate = useNavigate(); // Inicialize o hook useNavigate
+  const [editando, setEditando] = useState(false); // Modo de edição
+  const [alunoEditando, setAlunoEditando] = useState(null); // Aluno sendo editado
+  const navigate = useNavigate();
 
-  // Limpar campos de email e senha quando a página de cadastro for carregada
+  // Verifica se o usuário é admin
+  const isAdmin = () => {
+    const email = localStorage.getItem("email");
+    return email === "admin@admin.com";
+  };
+
+  // Busca a lista de alunos (apenas para admin)
   useEffect(() => {
-    setAluno((prevState) => ({
-      ...prevState,
-      email: "",
-      senha: "",
-    }));
+    if (isAdmin()) {
+      const fetchAlunos = async () => {
+        try {
+          const res = await api.get("/alunos");
+          setAlunos(res.data);
+        } catch (error) {
+          console.error("Erro ao buscar alunos:", error.response?.data || error.message);
+        }
+      };
+      fetchAlunos();
+    }
   }, []);
 
+  // Funções de máscara (telefone, data, matrícula, CEP)
   const aplicarMascaraTelefone = (valor) => {
     return valor
-      .replace(/\D/g, "") // Remove tudo que não for número
-      .replace(/^(\d{2})(\d)/, "($1)$2") // Adiciona parênteses no DDD
-      .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o hífen no telefone
-      .slice(0, 14); // Limita ao tamanho máximo (14 caracteres)
+      .replace(/\D/g, "")
+      .replace(/^(\d{2})(\d)/, "($1)$2")
+      .replace(/(\d{5})(\d)/, "$1-$2")
+      .slice(0, 14);
   };
 
   const aplicarMascaraData = (valor) => {
     return valor
-      .replace(/\D/g, "") // Remove tudo que não for número
-      .replace(/^(\d{2})(\d)/, "$1/$2") // Adiciona a primeira barra
-      .replace(/(\d{2})(\d)/, "$1/$2") // Adiciona a segunda barra
-      .slice(0, 10); // Limita ao tamanho máximo (10 caracteres)
+      .replace(/\D/g, "")
+      .replace(/^(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .slice(0, 10);
   };
 
   const aplicarMascaraMatricula = (valor) => {
-    return valor.replace(/\D/g, "").slice(0, 6); // Apenas números, máximo 6 caracteres
+    return valor.replace(/\D/g, "").slice(0, 6);
   };
 
+  const aplicarMascaraCEP = (valor) => {
+    return valor.replace(/\D/g, "").replace(/^(\d{5})(\d)/, "$1-$2").slice(0, 9);
+  };
+
+  // Validação dos campos
   const validarCampos = () => {
     const novosErros = {};
 
@@ -71,25 +92,25 @@ function Alunos() {
       }
     });
 
-    // Validação do telefone (99)99999-9999
+    // Validação do telefone
     const telefoneRegex = /^\(\d{2}\)\d{5}-\d{4}$/;
     if (!telefoneRegex.test(aluno.telefone)) {
       novosErros.telefone = "Formato inválido. Use (99)99999-9999";
     }
 
-    // Validação da matrícula (6 números)
+    // Validação da matrícula
     const matriculaRegex = /^\d{6}$/;
     if (!matriculaRegex.test(aluno.matricula)) {
       novosErros.matricula = "A matrícula deve ter exatamente 6 números";
     }
 
-    // Validação da data de nascimento (DD/MM/AAAA)
+    // Validação da data de nascimento
     const dataNascimentoRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dataNascimentoRegex.test(aluno.dataNascimento)) {
       novosErros.dataNascimento = "Formato inválido. Use DD/MM/AAAA";
     }
 
-    // Validação do CEP (8 números)
+    // Validação do CEP
     const cepRegex = /^\d{5}-\d{3}$/;
     if (!cepRegex.test(aluno.endereco.cep)) {
       novosErros.cep = "Formato inválido. Use XXXXX-XXX";
@@ -105,7 +126,8 @@ function Alunos() {
     return Object.keys(novosErros).length === 0;
   };
 
-  const cadastrarAluno = async () => {
+  // Cadastrar ou atualizar aluno
+  const salvarAluno = async () => {
     setMensagem("");
 
     if (!validarCampos()) {
@@ -118,18 +140,18 @@ function Alunos() {
       dataNascimento: aluno.dataNascimento.split("/").reverse().join("-"),
     };
 
-    console.log("Enviando para API:", alunoFormatado);
-
     try {
-      await api.post("/alunos/register", alunoFormatado);
-      setMensagem("Cadastrado com sucesso!");
+      if (editando) {
+        // Atualizar aluno existente
+        await api.put(`/alunos/${alunoEditando._id}`, alunoFormatado);
+        setMensagem("Aluno atualizado com sucesso!");
+      } else {
+        // Cadastrar novo aluno
+        await api.post("/alunos/register", alunoFormatado);
+        setMensagem("Aluno cadastrado com sucesso!");
+      }
 
-      // Redireciona para a página de login após 2 segundos
-      setTimeout(() => {
-        navigate("/login"); // Redireciona para a rota de login
-      }, 2000);
-
-      // Limpa o formulário
+      // Limpar formulário e atualizar lista
       setAluno({
         nome: "",
         email: "",
@@ -147,18 +169,74 @@ function Alunos() {
         },
       });
       setErros({});
+      setEditando(false);
+      setAlunoEditando(null);
+
+      // Atualizar lista de alunos (apenas para admin)
+      if (isAdmin()) {
+        const res = await api.get("/alunos");
+        setAlunos(res.data);
+      }
+
+      // Redirecionar para a página de login após 2 segundos
+      setTimeout(() => {
+        navigate("/login"); // Redireciona para a rota de login
+      }, 2000);
     } catch (error) {
-      console.error("Erro ao cadastrar aluno:", error.response?.data || error.message);
-      setMensagem(error.response?.data?.message || "Erro ao cadastrar aluno.");
+      console.error("Erro ao salvar aluno:", error.response?.data || error.message);
+      setMensagem(error.response?.data?.message || "Erro ao salvar aluno.");
     }
   };
 
-  
+  // Iniciar edição de aluno
+  const iniciarEdicao = (aluno) => {
+    setEditando(true);
+    setAlunoEditando(aluno);
+    setAluno({
+      ...aluno,
+      dataNascimento: aluno.dataNascimento.split("-").reverse().join("/"),
+    });
+  };
+
+  // Cancelar edição
+  const cancelarEdicao = () => {
+    setEditando(false);
+    setAlunoEditando(null);
+    setAluno({
+      nome: "",
+      email: "",
+      curso: "",
+      senha: "",
+      dataNascimento: "",
+      telefone: "",
+      matricula: "",
+      endereco: {
+        rua: "",
+        bairro: "",
+        numero: "",
+        cidade: "",
+        cep: "",
+      },
+    });
+  };
+
+  // Excluir aluno
+  const excluirAluno = async (id) => {
+    try {
+      await api.delete(`/alunos/${id}`);
+      setMensagem("Aluno excluído com sucesso!");
+      const res = await api.get("/alunos");
+      setAlunos(res.data);
+    } catch (error) {
+      console.error("Erro ao excluir aluno:", error.response?.data || error.message);
+      setMensagem(error.response?.data?.message || "Erro ao excluir aluno.");
+    }
+  };
 
   return (
     <div className="alunos-page">
       <div className="alunos-container">
-        <h2 className="mb-4">Cadastro de Aluno</h2>
+        <h2 className="mb-4">{editando ? "Editar Aluno" : "Cadastro de Aluno"}</h2>
 
         {mensagem && (
           <div className={`alert ${mensagem.includes("sucesso") ? "alert-success" : "alert-danger"}`}>
@@ -166,20 +244,20 @@ function Alunos() {
           </div>
         )}
 
-        {/* Campos do formulário */}
+        {/* Formulário de cadastro/edição */}
         {[
           { label: "Nome", key: "nome" },
           { label: "Email", key: "email" },
           { label: "Curso", key: "curso" },
-          { label: "Senha", key: "senha" },
+          { label: "Senha", key: "senha", type: "password" },
           { label: "Data de Nascimento", key: "dataNascimento", mascara: aplicarMascaraData },
           { label: "Matrícula", key: "matricula", mascara: aplicarMascaraMatricula },
           { label: "Telefone", key: "telefone", mascara: aplicarMascaraTelefone },
-        ].map(({ label, key, mascara }, index) => (
+        ].map(({ label, key, type, mascara }, index) => (
           <div className="form-group" key={index}>
             <label htmlFor={key}>{label}</label>
             <input
-              type={key === "senha" ? "password" : "text"}
+              type={type || "text"}
               id={key}
               className="form-control"
               placeholder={label}
@@ -187,7 +265,7 @@ function Alunos() {
               onChange={(e) =>
                 setAluno({ ...aluno, [key]: mascara ? mascara(e.target.value) : e.target.value })
               }
-              autoComplete="off" // Desabilitando o preenchimento automático para email e senha
+              autoComplete="off"
             />
             {erros[key] && <div className="error-message">{erros[key]}</div>}
           </div>
@@ -200,7 +278,7 @@ function Alunos() {
           { label: "Bairro", key: "bairro" },
           { label: "Número", key: "numero" },
           { label: "Cidade", key: "cidade" },
-          { label: "CEP", key: "cep", mascara: (valor) => valor.replace(/\D/g, "").replace(/^(\d{5})(\d)/, "$1-$2").slice(0, 9) },
+          { label: "CEP", key: "cep", mascara: aplicarMascaraCEP },
         ].map(({ label, key, mascara }, index) => (
           <div className="form-group" key={index}>
             <label htmlFor={key}>{label}</label>
@@ -224,9 +302,48 @@ function Alunos() {
           </div>
         ))}
 
-        <button className="btn btn-primary mt-3" onClick={cadastrarAluno}>
-          Cadastrar
+        <button className="btn btn-primary mt-3" onClick={salvarAluno}>
+          {editando ? "Atualizar" : "Cadastrar"}
         </button>
+        {editando && (
+          <button className="btn btn-secondary mt-3 ml-2" onClick={cancelarEdicao}>
+            Cancelar
+          </button>
+        )}
+
+        {/* Lista de alunos (apenas para admin) */}
+        {isAdmin() && (
+          <>
+            <h3 className="mt-5">Lista de Alunos</h3>
+            <table className="alunos-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Curso</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {alunos.map((a) => (
+                  <tr key={a._id}>
+                     <td className="nome-destaque">{a.nome}</td> {/* Classe para o nome */}
+                     <td className="email-destaque">{a.email}</td> {/* Classe para o email */}
+                     <td className="curso-destaque">{a.curso}</td> {/* Classe para o curso */}
+                    <td>
+                      <button className="btn btn-edit btn-sm" onClick={() => iniciarEdicao(a)}>
+                        Editar
+                      </button>
+                      <button className="btn btn-danger btn-sm ml-2" onClick={() => excluirAluno(a._id)}>
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
       </div>
     </div>
   );

@@ -142,8 +142,200 @@
     text-align: center;
   }
   
-  /* Estilos para a Página de Exibir Disciplinas */
-  .disciplinas-page {
+/* Estilos Gerais */
+.disciplinas-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ecf0f1; /* Fundo claro */
+}
+
+.disciplinas-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.disciplinas-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Azul escuro */
+}
+
+.disciplinas-subtitle {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #34495e; /* Azul médio */
+}
+
+/* Formulário */
+.disciplinas-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #34495e; /* Azul médio */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bdc3c7; /* Cinza claro */
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  border-color: #3498db; /* Azul claro */
+  outline: none;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botões */
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background: #3498db; /* Azul claro */
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9; /* Azul mais escuro */
+}
+
+.btn-secondary {
+  background: #95a5a6; /* Cinza */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #7f8c8d; /* Cinza mais escuro */
+}
+
+/* Botões de Editar e Excluir */
+.disciplinas-table .btn-edit {
+  background: #3498db !important; /* azul */
+  color: rgb(255, 255, 255) !important;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.disciplinas-table .btn-edit:hover {
+  background: #2271a5 !important; /* azul mais escuro */
+}
+
+.disciplinas-table .btn-delete {
+  background: #e73c3c !important; /* Vermelho */
+  color: white !important;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.disciplinas-table .btn-delete:hover {
+  background: #c0392b !important; /* Vermelho mais escuro */
+}
+
+/* Tabela */
+.disciplinas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.disciplinas-table th,
+.disciplinas-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.disciplinas-table th {
+  background: #3498db; /* Azul claro */
+  color: white;
+  font-weight: bold;
+}
+
+.disciplinas-table tr:nth-child(even) {
+  background: #f9f9f9; /* Cinza claro para linhas alternadas */
+}
+
+.disciplinas-table tr:hover {
+  background: #ecf0f1; /* Fundo mais claro ao passar o mouse */
+}
+
+.disciplinas-table td:nth-child(2) {
+  font-weight: bold; /* Texto em negrito */
+}
+/* Mensagens */
+.alert {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.alert-success {
+  background: #d5f5e3; /* Verde claro */
+  color: #2ecc71; /* Verde */
+  border: 1px solid #2ecc71;
+}
+
+.alert-error {
+  background: #fadbd8; /* Vermelho claro */
+  color: #e74c3c; /* Vermelho */
+  border: 1px solid #e74c3c;
+}
+
+/* Estilos para a lista de disciplinas */
+.disciplinas-table td:nth-child(1) {
+  color: #3498db; /* Azul claro para códigos */
+  font-weight: bold; /* Texto em negrito */
+}
+
+.disciplinas-table td:nth-child(2) {
+  color: #2c3e50; /* Azul escuro para nomes */
+}
+
+.disciplinas-table td:nth-child(3) {
+  color: #27ae60; /* Verde para carga horária */
+}
+
+/* Estilos para a Página de Alunos */
+.alunos-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -151,159 +343,65 @@
   min-height: 100vh; /* Centraliza verticalmente */
   background-color: #e0e5ec; /* Cor de fundo suave */
   padding: 20px;
-  }
-  
-  .disciplinas-container {
+}
+
+.alunos-container {
   background-color: #ffffff; /* Fundo branco */
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   width: 100%;
-  max-width: 600px; /* Largura máxima do container */
-  text-align: center;
-  }
-  
-  .disciplinas-title {
-  font-size: 2rem;
-  color: #333; /* Cor escura para o título */
-  margin-bottom: 20px;
-  font-weight: 600;
-  }
-  
-  .disciplinas-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd; /* Borda suave */
-  border-radius: 8px;
-  font-size: 1rem;
-  color: #333; /* Cor escura para o texto */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .disciplinas-input:focus {
-  border-color: #007bff; /* Azul no foco */
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
-  }
-  
-  .disciplinas-input::placeholder {
-  color: #999; /* Cor do placeholder */
-  }
-  
-  .disciplinas-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff; /* Azul */
-  border: none;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  }
-  
-  .disciplinas-button:hover {
-  background-color: #0056b3; /* Azul mais escuro no hover */
-  }
-  
-  .disciplinas-list {
-  list-style-type: none; /* Remove os marcadores da lista */
-  padding: 0;
-  margin-top: 20px;
-  }
-  
-  .disciplinas-item {
-  background-color: #f8f9fa; /* Fundo cinza claro */
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  color: #333; /* Cor escura para o texto */
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  }
-  
-  .disciplinas-item:hover {
-  background-color: rgba(0, 123, 255, 0.1); /* Azul claro no hover */
-  }
-  
-  .mensagem-sucesso {
-    background-color: #4caf50; /* Verde */
-    color: white;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  /* Estilos para a Página de Alunos */
-  .alunos-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Centraliza verticalmente */
-  background-color: #e0e5ec; /* Cor de fundo suave */
-  padding: 20px;
-  }
-  
-  .alunos-container {
-  background-color: #e3f2fd; /* Azul claro */
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  width: 100%;
   max-width: 800px; /* Largura máxima do container */
-  }
-  
-  .alunos-title {
+}
+
+.alunos-title {
   font-size: 2rem;
   color: #333; /* Cor escura para o título */
   margin-bottom: 20px;
   font-weight: 600;
   text-align: center;
-  }
-  
-  .alunos-form {
+}
+
+.alunos-form {
   display: flex;
   flex-direction: column;
   gap: 15px; /* Espaçamento entre os campos */
-  }
-  
-  .alunos-form-group {
+}
+
+.alunos-form-group {
   display: flex;
   flex-direction: column;
-  }
-  
-  .alunos-form-label {
+}
+
+.alunos-form-label {
   font-size: 1rem;
   color: #555; /* Cinza escuro para o texto */
   margin-bottom: 8px;
   font-weight: 500;
-  }
-  
-  .alunos-form-input {
+}
+
+.alunos-form-input {
   padding: 12px;
   border: 1px solid #ddd; /* Borda suave */
   border-radius: 8px;
   font-size: 1rem;
   color: #333; /* Cor escura para o texto */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .alunos-form-input:focus {
+}
+
+.alunos-form-input:focus {
   border-color: #007bff; /* Azul no foco */
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Sombra suave no foco */
-  }
-  
-  .alunos-error-message {
+}
+
+.alunos-error-message {
   color: #dc3545; /* Vermelho para mensagens de erro */
   font-size: 0.875rem;
   margin-top: 5px;
-  }
-  
-  .alunos-form-button {
+}
+
+.alunos-form-button {
   padding: 12px;
   background-color: #007bff; /* Azul */
   border: none;
@@ -313,52 +411,137 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  }
-  
-  .alunos-form-button:hover {
+}
+
+.alunos-form-button:hover {
   background-color: #0056b3; /* Azul mais escuro no hover */
-  }
-  
-  .alunos-subtitle {
+}
+
+.alunos-form-button.cancelar {
+  background-color: #6c757d; /* Cinza para o botão de cancelar */
+}
+
+.alunos-form-button.cancelar:hover {
+  background-color: #5a6268; /* Cinza mais escuro no hover */
+}
+
+.alunos-subtitle {
   font-size: 1.5rem;
   color: #333; /* Cor escura para o subtítulo */
   margin-top: 30px;
   margin-bottom: 20px;
   font-weight: 600;
-  }
-  
-  .alunos-table {
+}
+
+.alunos-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  }
-  
-  .alunos-table-header {
-  background-color: #f8f9fa; /* Fundo cinza claro para cabeçalho */
-  }
-  
-  .alunos-table-header th {
-  padding: 12px;
+}
+
+.alunos-table td {
   color: #333; /* Cor escura para o texto */
-  font-weight: 600;
-  text-align: left;
-  }
-  
-  .alunos-table-body {
-  background-color: #ffffff;
-  }
-  
-  .alunos-table-row {
-  border-bottom: 1px solid #ddd; /* Linhas suaves */
-  }
-  
-  .alunos-table-row td {
   padding: 12px;
+  text-align: left;
+}
+
+.alunos-table th,
+.alunos-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.alunos-table th {
+  background-color: #007bff; /* Azul para o cabeçalho */
+  color: #ffffff; /* Texto branco */
+  font-weight: 600;
+}
+
+.alunos-table tr:nth-child(even) {
+  background-color: #f8f9fa; /* Fundo cinza claro para linhas alternadas */
+}
+
+.alunos-table tr:hover {
+  background-color: #e9ecef; /* Fundo cinza mais claro ao passar o mouse */
+}
+
+.alunos-table td {
   color: #555; /* Cinza escuro para o texto */
-  }
+}
+
+.alunos-table .btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.alunos-table .btn-edit {
+  background-color: #3498db !important; /* Azul para editar */
+  color: #fffefe; /* Texto preto */
+}
+
+.alunos-table .btn-edit:hover {
+  background-color: #2271a5 !important; /* Azul mais escuro no hover */
+}
+
+.alunos-table .btn-delete {
+  background-color: #dc3545; /* Vermelho para excluir */
+  color: #ffffff; /* Texto branco */
+}
+
+.alunos-table .btn-delete:hover {
+  background-color: #c82333; /* Vermelho mais escuro no hover */
+}
+
+/* Estilo para o campo NOME */
+.nome-destaque {
+  color: #007bff; /* Azul */
+  font-weight: bold; /* Negrito */
+  font-size: 1rem; /* Tamanho da fonte */
+}
+
+/* Estilo para o campo EMAIL */
+.email-destaque {
+  color: #28a745 !important; /* Verde */
+  font-style: italic; /* Itálico */
+  font-size: 0.95rem; /* Tamanho da fonte */
+}
+
+/* Estilo para o campo CURSO */
+.curso-destaque {
+  color: #6f42c1 !important; /* Roxo */
+  font-weight: 500; /* Peso da fonte (semibold) */
+  font-size: 0.95rem; /* Tamanho da fonte */
+}
+
+/* Mensagens de sucesso e erro */
+.alert {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #d4edda; /* Verde claro para sucesso */
+  color: #155724; /* Verde escuro para texto */
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da; /* Vermelho claro para erro */
+  color: #721c24; /* Vermelho escuro para texto */
+  border: 1px solid #f5c6cb;
+}
   
   /* Estilos para a Página de Disciplinas */
   .disciplinas-page {
@@ -713,12 +896,7 @@
   .main-layout {
   flex-direction: column;
   }
-  
-  .sidebar {
-  width: 100%;
-  margin-bottom: 20px;
-  box-shadow: none;
-  }
+
   
   .content {
   margin: 0;
