@@ -39,7 +39,7 @@ function Alunos() {
     if (isAdmin()) {
       const fetchAlunos = async () => {
         try {
-          const res = await api.get("/alunos");
+          const res = await api.get("/alunos"); // Usa o novo endpoint
           setAlunos(res.data);
         } catch (error) {
           console.error("Erro ao buscar alunos:", error.response?.data || error.message);

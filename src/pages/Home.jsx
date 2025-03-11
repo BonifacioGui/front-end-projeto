@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Card } from "react-bootstrap";
-import { FaUserGraduate, FaBook, FaClipboardList, FaSignInAlt } from "react-icons/fa"; // Ícones do FontAwesome
+import { FaUserGraduate, FaBook, FaClipboardList, FaSignInAlt, FaListAlt } from "react-icons/fa"; // Adicione o ícone FaListAlt
 import "../styles/global.css"; // Ajuste o caminho conforme necessário
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
       {/* Hero Section */}
       <div className="home-hero">
         <Container className="text-center">
-          <h1 className="home-title">Bem-vindo ao Sistema de Cadastro de Alunos</h1>
+          <h1 className="home-title">Bem-vindo ao Sistema de Cadastro e Gerenciamentode de Alunos</h1>
           <p className="home-subtitle">
             Gerencie alunos, disciplinas e matrículas de forma eficiente e intuitiva.
           </p>
@@ -67,6 +67,21 @@ function Home() {
           <Col md={6} lg={3} className="mb-4">
             <Card className="home-card">
               <Card.Body className="text-center">
+                <FaListAlt size={48} className="home-icon" /> {/* Ícone para "Minhas Disciplinas" */}
+                <Card.Title>Minhas Disciplinas</Card.Title>
+                <Card.Text>
+                  Visualize as disciplinas nas quais você está matriculado.
+                </Card.Text>
+                <Button as={Link} to="/minhas-disciplinas" variant="warning" className="home-button">
+                  Acessar
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col md={6} lg={3} className="mb-4">
+            <Card className="home-card">
+              <Card.Body className="text-center">
                 <FaSignInAlt size={48} className="home-icon" />
                 <Card.Title>Login</Card.Title>
                 <Card.Text>
@@ -85,7 +100,7 @@ function Home() {
       <footer className="home-footer">
         <Container className="text-center">
           <p className="home-footer-text">
-            © 2025 Sistema de Cadastro de Alunos. Todos os direitos reservados.
+            © 2025 Sistema de Cadastro e Gerenciamento de Alunos. Todos os direitos reservados.
           </p>
         </Container>
       </footer>

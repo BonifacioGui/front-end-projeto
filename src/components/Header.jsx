@@ -31,6 +31,9 @@ function Header() {
             <Nav.Link as={Link} to="/matriculas" className="header-nav-link">
               Matriculas
             </Nav.Link>
+            <Nav.Link as={Link} to="/minhas-disciplinas" className="header-nav-link">
+              Minhas Disciplinas
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

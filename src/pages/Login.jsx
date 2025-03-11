@@ -33,7 +33,7 @@ function Login() {
   
       setTimeout(() => {
         if (isAdmin) {
-          navigate("/admin");
+          navigate("/");
         } else {
           navigate("/alunos");
         }
@@ -43,6 +43,15 @@ function Login() {
       setErroLogin("Erro ao realizar login. Verifique suas credenciais.");
       setMensagemSucesso("");
     }
+  };
+
+  // Função para sair (logout)
+  const handleLogout = () => {
+    localStorage.removeItem("alunoId");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("email");
+    localStorage.removeItem("senha");
+    navigate("/login"); // Redireciona para a página de login
   };
   
   return (
@@ -65,6 +74,11 @@ function Login() {
         />
         <button onClick={handleLogin} className="login-button">
           Entrar
+        </button>
+
+        {/* Botão de Sair */}
+        <button onClick={handleLogout} className="logout-button">
+          Sair
         </button>
         
         {/* Exibindo mensagens de erro ou sucesso */}

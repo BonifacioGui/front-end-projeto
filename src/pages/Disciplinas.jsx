@@ -213,7 +213,7 @@ function Disciplinas() {
 
         {/* Mensagens de Sucesso ou Erro */}
         {mensagemSucesso && <div className="alert alert-success">{mensagemSucesso}</div>}
-        {erroCadastro && <div className="alert alert-error">{erroCadastro}</div>}
+        {erroCadastro && <div className="erro-cadastro-disciplina">{erroCadastro}</div>} {/* Classe atualizada */}
 
         {/* Lista de Disciplinas */}
         <h3 className="disciplinas-subtitle">Lista de Disciplinas</h3>
@@ -235,10 +235,10 @@ function Disciplinas() {
                 {isAdmin() && (
                   <td>
                     <button className="btn btn-edit" onClick={() => iniciarEdicao(d)}>
-                       Editar
+                      Editar
                     </button>
                     <button className="btn btn-delete" onClick={() => deletarDisciplina(d._id)}>
-                       Excluir
+                      Excluir
                     </button>
                   </td>
                 )}
