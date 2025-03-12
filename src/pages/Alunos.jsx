@@ -36,18 +36,29 @@ function Alunos() {
 
   // Busca a lista de alunos (apenas para admin)
   useEffect(() => {
-    if (isAdmin()) {
-      const fetchAlunos = async () => {
-        try {
-          const res = await api.get("/alunos"); // Usa o novo endpoint
-          setAlunos(res.data);
-        } catch (error) {
-          console.error("Erro ao buscar alunos:", error.response?.data || error.message);
-        }
-      };
-      fetchAlunos();
+    const alunoId = localStorage.getItem("alunoId");
+
+    // Verifica se o usuário é admin
+    if (!isAdmin()) {
+      navigate("/"); // Redireciona para a página inicial
+      return;
     }
-  }, []);
+
+    if (!alunoId) {
+      navigate("/login"); // Redireciona para o login se não houver alunoId
+      return;
+    }
+
+    const fetchAlunos = async () => {
+      try {
+        const res = await api.get("/alunos"); // Usa o novo endpoint
+        setAlunos(res.data);
+      } catch (error) {
+        console.error("Erro ao buscar alunos:", error.response?.data || error.message);
+      }
+    };
+    fetchAlunos();
+  }, [navigate]);
 
   // Funções de máscara (telefone, data, matrícula, CEP)
   const aplicarMascaraTelefone = (valor) => {

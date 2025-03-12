@@ -1,7 +1,20 @@
-import { Link } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import "../styles/global.css"; 
+import { Link, useNavigate } from "react-router-dom";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import "../styles/global.css";
+
 function Header() {
+  const navigate = useNavigate();
+
+  // Função para sair (logout)
+  const handleLogout = () => {
+    localStorage.removeItem("alunoId");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("email");
+    localStorage.removeItem("senha");
+    alert("Você saiu da sua conta com sucesso!"); // Mensagem de confirmação
+    navigate("/login"); // Redireciona para a página de login
+  };
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="header">
       <Container fluid className="header-container">
@@ -34,6 +47,18 @@ function Header() {
             <Nav.Link as={Link} to="/minhas-disciplinas" className="header-nav-link">
               Minhas Disciplinas
             </Nav.Link>
+
+            {/* Botão de Logout */}
+            {localStorage.getItem("authToken") && (
+              <Button
+                variant="danger"
+                onClick={handleLogout}
+                size="sm" // Tamanho pequeno
+                className="logout-button"
+              >
+                Sair
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

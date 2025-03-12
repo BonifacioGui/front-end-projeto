@@ -144,6 +144,7 @@
   
   /* Estilo para o botão de sair */
 .logout-button {
+  width: 100%;
   background-color: #dc3545; /* Vermelho */
   color: #ffffff; /* Texto branco */
   padding: 10px 20px;
@@ -159,6 +160,7 @@
 .logout-button:hover {
   background-color: #c82333; /* Vermelho mais escuro no hover */
 }
+
 /* Estilos Gerais */
 .disciplinas-page {
   padding: 20px;
