@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/global.css"; // Ajuste o caminho conforme necessário
+import "../styles/global.css"; 
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ function Login() {
       localStorage.setItem("alunoId", alunoId);
       localStorage.setItem("authToken", token);
       localStorage.setItem("email", email); // 🔹 Armazena o email
-      localStorage.setItem("senha", senha); // 🔹 Armazena a senha (⚠️ Melhor usar token!)
+      localStorage.setItem("senha", senha); // 🔹 Armazena a senha 
 
       setMensagemSucesso("Login realizado com sucesso!");
       setErroLogin("");
@@ -66,7 +66,7 @@ function Login() {
     <div className="login-page">
       <div className="login-container">
         <h2 className="login-title">Login</h2>
-        <form onKeyDown={handleKeyDown}> {/* Adiciona o evento de teclado aqui */}
+        <form onKeyDown={handleKeyDown}>
           <input
             type="email"
             placeholder="Email"

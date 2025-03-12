@@ -16,7 +16,7 @@ function App() {
       {/* Header */}
       <Header />
 
-      {/* Layout Principal (Sidebar + Conteúdo) */}
+      {/* Layout Principal */}
       <div className="main-layout">
 
         {/* Conteúdo das Páginas */}
