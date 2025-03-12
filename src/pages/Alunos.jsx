@@ -36,29 +36,18 @@ function Alunos() {
 
   // Busca a lista de alunos (apenas para admin)
   useEffect(() => {
-    const alunoId = localStorage.getItem("alunoId");
-
-    // Verifica se o usuário é admin
-    if (!isAdmin()) {
-      navigate("/"); // Redireciona para a página inicial
-      return;
+    if (isAdmin()) {
+      const fetchAlunos = async () => {
+        try {
+          const res = await api.get("/alunos"); // Busca a lista de alunos
+          setAlunos(res.data);
+        } catch (error) {
+          console.error("Erro ao buscar alunos:", error.response?.data || error.message);
+        }
+      };
+      fetchAlunos();
     }
-
-    if (!alunoId) {
-      navigate("/login"); // Redireciona para o login se não houver alunoId
-      return;
-    }
-
-    const fetchAlunos = async () => {
-      try {
-        const res = await api.get("/alunos"); // Usa o novo endpoint
-        setAlunos(res.data);
-      } catch (error) {
-        console.error("Erro ao buscar alunos:", error.response?.data || error.message);
-      }
-    };
-    fetchAlunos();
-  }, [navigate]);
+  }, []);
 
   // Funções de máscara (telefone, data, matrícula, CEP)
   const aplicarMascaraTelefone = (valor) => {
@@ -153,11 +142,15 @@ function Alunos() {
 
     try {
       if (editando) {
-        // Atualizar aluno existente
+        // Atualizar aluno existente (apenas admin pode editar)
+        if (!isAdmin()) {
+          setMensagem("Apenas o admin pode editar alunos.");
+          return;
+        }
         await api.put(`/alunos/${alunoEditando._id}`, alunoFormatado);
         setMensagem("Aluno atualizado com sucesso!");
       } else {
-        // Cadastrar novo aluno
+        // Cadastrar novo aluno (qualquer pessoa pode cadastrar)
         await api.post("/alunos/register", alunoFormatado);
         setMensagem("Aluno cadastrado com sucesso!");
       }
@@ -199,8 +192,12 @@ function Alunos() {
     }
   };
 
-  // Iniciar edição de aluno
+  // Iniciar edição de aluno (apenas admin pode editar)
   const iniciarEdicao = (aluno) => {
+    if (!isAdmin()) {
+      setMensagem("Apenas o admin pode editar alunos.");
+      return;
+    }
     setEditando(true);
     setAlunoEditando(aluno);
     setAluno({
@@ -231,8 +228,12 @@ function Alunos() {
     });
   };
 
-  // Excluir aluno
+  // Excluir aluno (apenas admin pode excluir)
   const excluirAluno = async (id) => {
+    if (!isAdmin()) {
+      setMensagem("Apenas o admin pode excluir alunos.");
+      return;
+    }
     try {
       await api.delete(`/alunos/${id}`);
       setMensagem("Aluno excluído com sucesso!");
@@ -338,9 +339,9 @@ function Alunos() {
               <tbody>
                 {alunos.map((a) => (
                   <tr key={a._id}>
-                     <td className="nome-destaque">{a.nome}</td> {/* Classe para o nome */}
-                     <td className="email-destaque">{a.email}</td> {/* Classe para o email */}
-                     <td className="curso-destaque">{a.curso}</td> {/* Classe para o curso */}
+                    <td className="nome-destaque">{a.nome}</td>
+                    <td className="email-destaque">{a.email}</td>
+                    <td className="curso-destaque">{a.curso}</td>
                     <td>
                       <button className="btn btn-edit btn-sm" onClick={() => iniciarEdicao(a)}>
                         Editar
